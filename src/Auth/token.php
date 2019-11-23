@@ -8,14 +8,13 @@ $client = new Client([
     'options' => [
         'headers' => [
             'Content-Type' => 'application/x-www-form-urlencoded',
-            'Accept' => 'application/json',
-            'Authorization' => 'Bearer '.ACCESS_TOKEN ,
         ],
         'form_params' => [
-            'grant_type' => 'refresh_token',
-            'refresh_token' => REFRESH_TOKEN,
+            'grant_type' => 'password',
             'client_id' => CLIENT_ID,
             'client_secret' => CLIENT_SECRET,
+            'username' => 'psmever@gmail.com',
+            'password' => '123456',
             'scope' => '',
         ],
         'debug' => false,
@@ -24,5 +23,6 @@ $client = new Client([
 ]);
 
 print_r($client->getResult());
+
 echo PHP_EOL;
 ?>
