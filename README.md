@@ -15,7 +15,7 @@ php src/Auth/token.php
 
 ## Developer
 ```bash
-php artisan serve
+php src/Auth/register.php
 ```
 
 
