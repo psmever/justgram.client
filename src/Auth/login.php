@@ -14,5 +14,11 @@ $client = new Client([
         // 'http_errors' => false
     ]
 ]);
+
+
+print_r($client->getResult());
+
+
+
 echo PHP_EOL;
 ?>

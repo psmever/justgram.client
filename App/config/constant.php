@@ -4,7 +4,7 @@ defined('BASE_URL') OR define('BASE_URL', 'http://localhost:8000');
 
 //-----------------------------------------------------------------------------------------------------
 defined('CLIENT_ID') OR define('CLIENT_ID', '2');
-defined('CLIENT_SECRET') OR define('CLIENT_SECRET', 'kyYYEHL571B2z9k3wEq2H9yAVAcV08Dy1DIpP7dI');
+defined('CLIENT_SECRET') OR define('CLIENT_SECRET', 'honEdQ2KcW3Gj5VAMq4Hk1DsfhS5h2jIVUmNT0G9');
 //-----------------------------------------------------------------------------------------------------
 
 defined('ACCESS_TOKEN_FILE') OR define('ACCESS_TOKEN_FILE', 'App/Storage/access_token.txt');

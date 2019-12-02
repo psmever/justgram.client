@@ -32,22 +32,24 @@ class Client
 
     private function init()
     {
+
+        $returnData = array();
+
         try {
             if($this->method == 'post')
             {
-                // $this->client->setDefaultOption('headers', [
-                //     'Content-Type' => 'application/x-www-form-urlencoded',
-                //     'Accept'        => 'application/json',
-                //     'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiYzBkNTg0NTkwZGIwMTkwNTNjYzZiYWQ3MTE5NWM1MGQ0YjQ4MmUwYzlkMGQ4ZGE4Y2Y5MGQ1MGIzYjMzOGFlOTRmNTEzYmIyNmI1M2FlMTUiLCJpYXQiOjE1NzQ0OTk3OTksIm5iZiI6MTU3NDQ5OTc5OSwiZXhwIjoxNTc0NDk5ODU5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.ImVI1-WEyxtBkThYYxI-DDX5l7hsgN4lQtfqscnvggFcLGLKxYWlDcID74-L9I1puqIcxLdAzppZ34LBw1rtDlWr1xzx7a1Bb-Ab2i0UMeuhFFw9JwrUI8wkXuGruZyzj2nAjkcMmmqLmqeHrwW1ih3CpYBTJ3sX_sFrF_oS0cW3SkoQ3wPcIzx02tNvL4mXBpoxWayG63LQoeOHUP5fj_vueHJmQSU37wZFYM7bcyOU1sisdoRRDDStg5TdB-w6ujJ0r33ROibLb7xfMNkmOTu9b8ZRSO6vbVWX9aIQfF_uGLRFWaD3k8vVeUw3NNN8mAz6SeeIE-oL0leVhT9Fi7_ds5lOOcp53o_-CfRPS9J0iVnc6NeSq-mlJS2OmcdGiSpfb3SAX8aDfKTRiw3s20vK_iGuQmbG4aDR1TvXY2fgC9rTG-eUKGLADCbPUH7hai2IHNztTucvBo3VtptpgjqYZnGxHZiaSlRaLwuwYtiK1CsNmnc1gXZmli9B1dm-JwH5pwyBzwHf7fO-ouheFuZCFxaHbpsj06pSEQ9LVvGveesizZSegSxKuNYIxJ0UXeUaz9p_uRdi1SAw0w7IkpfZcH8Ym1ln49Wh9WULri3r-GPG11FLHkqXbUfBPksK8eOcLEX2lBfeWre9amint81MZvEsj8qyxfVELKOaA0s' ,
-                // ]);
-
                 $response = $this->client->post($this->url, $this->options);
+            }
+            else if($this->method == 'get')
+            {
+                $response = $this->client->get($this->url, $this->options);
             }
 
             $statusCode = $response->getStatusCode();
 
             // echo "getStatusCode : {$response->getStatusCode()}";
             // echo PHP_EOL;
+            // print_r($response->getBody());
             $contents = json_decode($response->getBody()->getContents(), true);
 
             if(isset($contents['access_token']) && $contents['access_token']) {
@@ -75,7 +77,7 @@ class Client
 
             // print_r(json_decode($responseBodyAsString, true));
 
-            return [
+            $returnData = [
                 'state' => ":::ClientException:::",
                 'error_message' => $e->getMessage(),
                 // 'getresponse' => $e->getResponse(),
@@ -91,7 +93,7 @@ class Client
 
             // print_r(json_decode($responseBodyAsString, true));
 
-            return [
+            $returnData = [
                 'state' => ":::ServerException:::",
                 'error_message' => $e->getMessage(),
                 // 'getresponse' => $e->getResponse(),
@@ -101,7 +103,7 @@ class Client
 
         } catch ( \GuzzleHttp\Exception\BadResponseException $e) {
             // echo ":::BadResponseException:::".PHP_EOL;
-            return [
+            $returnData = [
                 'state' => ":::BadResponseException:::",
                 'error_message' => $e->getMessage(),
                 // 'getresponse' => $e->getResponse(),
@@ -109,6 +111,9 @@ class Client
                 'contents' => json_decode($responseBodyAsString, true),
             ];
         }
+
+
+        return $returnData;
     }
 
 
