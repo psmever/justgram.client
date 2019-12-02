@@ -1,6 +1,23 @@
 # JsutGram.Backend Client Test
 
 
+## Config
+```bash
+composer install
+App\config\constant.php
+ - BASE_URL
+ - CLIENT_ID
+ - CLIENT_SECRET
+
+php src/Auth/token.php
+```
+
+
+## Developer
+```bash
+php artisan serve
+```
+
 
 
 ## Contributing
